@@ -5,6 +5,6 @@ defineProps({
 </script>
 <template>
     <h1>
-        ASB {{ user }}
+        ASB {{ $page.props.auth.user.name }}
     </h1>
 </template>
