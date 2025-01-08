@@ -1,5 +1,8 @@
 <script setup>
 import { useForm } from '@inertiajs/vue3';
+import { ref } from 'vue';
+import { ChevronDownIcon } from '@heroicons/vue/16/solid'
+import { Switch, SwitchGroup, SwitchLabel } from '@headlessui/vue'
 
 const form = useForm({
   name : null,
@@ -22,6 +25,8 @@ const submit =() => {
     )
   });
 };
+
+const agreed = ref(false)
 
 
 </script>
@@ -81,6 +86,19 @@ const submit =() => {
             <input type="password" name="password_confimation" id="password_confimation" autocomplete="password_confimation"  class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" v-model="form.password_confirmation" />
           </div>
         </div>
+        <SwitchGroup as="div" class="flex gap-x-4 sm:col-span-2">
+          <div class="flex h-6 items-center">
+            <Switch v-model="agreed" :class="[agreed ? 'bg-indigo-600' : 'bg-gray-200', 'flex w-8 flex-none cursor-pointer rounded-full p-px ring-1 ring-inset ring-gray-900/5 transition-colors duration-200 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600']">
+              <span class="sr-only">Agree to policies</span>
+              <span aria-hidden="true" :class="[agreed ? 'translate-x-3.5' : 'translate-x-0', 'size-4 transform rounded-full bg-white shadow-sm ring-1 ring-gray-900/5 transition duration-200 ease-in-out']" />
+            </Switch>
+          </div>
+          <SwitchLabel class="text-sm/6 text-gray-600">
+            By selecting this, you agree to our
+            {{ ' ' }}
+            <a href="#" class="font-semibold text-indigo-600">privacy&nbsp;policy</a>.
+          </SwitchLabel>
+        </SwitchGroup>
 
         <div>
           <button class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 mt-5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" :disabled="form.processing">Sign up</button>

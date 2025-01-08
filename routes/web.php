@@ -1,10 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 use Inertia\Inertia;
 
 use App\Http\Controllers\AuthController;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ProfileController;
 
 if (!Auth::check()) {
     Route::inertia('/login', 'Auth/Login');
@@ -19,6 +21,10 @@ Route::middleware('auth')->group(function(){
         return inertia('About');
     });
     Route::post('/logout', [AuthController::class, 'logout']);
+
+    Route::prefix('profile')->group(function () {
+        Route::inertia('/', 'Profile');
+    });
 });
 
 
