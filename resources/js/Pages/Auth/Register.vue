@@ -11,10 +11,12 @@ const form = useForm({
   password : null,
   password_confirmation : null,
   avatar : null,
+  preview : null,
 });
 
 const change = (e)=>{
   form.avatar = e.target.files[0];
+  form.preview = URL.createObjectURL(e.target.files[0]);
 };
 
 const submit =() => {
@@ -38,20 +40,22 @@ const agreed = ref(false)
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
       <form class="space-y-2" @submit.prevent="submit">
+        <div class="grid place-items-center">
+          <div class="relative w-28 h-28 rounded-full overflow-hidden border border-slate-300">
+            <label for="avatar" class="absolute inset-0 grid content-end cursor-pointer">
+              <span class="bg-white/70 pb-2 text-center">
+                Avatar
+              </span>
+            </label>
+            <input type="file" @input="change" id="avatar" hidden>
+            <img class="object-cover w-28 h-28" :src="form.preview ?? 'storage/avatars/default_avatar.png'">
+          </div>
+        </div>
         <div>
           <label for="name" class="block text-sm/6 font-medium text-gray-900">Name</label>
           <div class="mt-2">
             <input type="text" name="name" id="name" autocomplete="text"  class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" v-model="form.name"/>
             <small class="error">{{ form.errors.name }}</small>
-          </div>
-        </div>
-        <div class="col-span-full">
-          <label for="photo" class="block text-sm/6 font-medium text-gray-900">Avatar</label>
-          <div class="mt-2 flex items-center gap-x-3">
-            <svg class="size-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon">
-              <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clip-rule="evenodd" />
-            </svg>
-            <input type="file" @input="change" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
           </div>
         </div>
         <div>

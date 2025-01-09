@@ -28,7 +28,9 @@ class AuthController extends Controller
         }
 
         $user = User::create($save);
-        return redirect('/');
+        Auth::login($user);
+        
+        return redirect('/')->with('message', 'Welcome to the Jungle');
     }
 
     public function login(Request $request){

@@ -7,6 +7,7 @@ const agreed = ref(false)
 </script>
 <template>
     <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                   
         <div>
           <label for="first-name" class="block text-sm/6 font-semibold text-gray-900">First name</label>
           <div class="mt-2.5">
