@@ -3,6 +3,8 @@ import { createApp, h } from 'vue'
 import { createInertiaApp, Link, Head } from '@inertiajs/vue3'
 import '../css/app.css'
 import Layout from './Layouts/Layout.vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 
 
 createInertiaApp({
@@ -19,6 +21,7 @@ createInertiaApp({
       .component('Link', Link)
       .component('Head', Head)
       .mount(el)
+      .component('font-awesome-icon', FontAwesomeIcon)
   },
   progress: {
     // The color of the progress bar...

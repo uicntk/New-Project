@@ -7,21 +7,16 @@ use Inertia\Inertia;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 
-if (!Auth::check()) {
-    Route::inertia('/login', 'Auth/Login');
-}
+use App\Models\User;
 
 Route::middleware('auth')->group(function(){
-    Route::get('/', function () {
-        return Inertia::render('Home');
-    });
+    Route::get('/', [UserController::class, 'index'])->name('home');
     
-    Route::get('/about', function () {
-        return inertia('About');
-    });
-    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::inertia('/about', 'About')->name('about');
 
+    Route::post('/logout', [AuthController::class, 'logout']);
     Route::prefix('profile')->group(function () {
         Route::inertia('/', 'Profile');
     });
