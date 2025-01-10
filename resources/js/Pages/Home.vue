@@ -39,7 +39,7 @@ const getDate = (date) =>
                 <thead>
                     <tr class="bg-slate-300">
                         <th>
-                            Name
+                            Name 
                         </th>
                         <th>
                             Phone

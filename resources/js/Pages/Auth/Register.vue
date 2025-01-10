@@ -48,7 +48,7 @@ const agreed = ref(false)
               </span>
             </label>
             <input type="file" @input="change" id="avatar" hidden>
-            <img class="object-cover w-28 h-28" :src="form.preview ?? 'storage/avatars/default_avatar.png'">
+            <img class="object-cover w-28 h-28" :src="form.preview ?? 'storage/avatars/d'">
           </div>
         </div>
         <div>

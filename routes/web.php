@@ -18,7 +18,9 @@ Route::middleware('auth')->group(function(){
 
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::prefix('profile')->group(function () {
-        Route::inertia('/', 'Profile');
+        Route::get('/', [ProfileController::class, 'profile'])->name('profile');
+        Route::post('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::post('/editpass', [ProfileController::class, 'editpass'])->name('profile.editpass');
     });
 });
 
